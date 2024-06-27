@@ -29,8 +29,17 @@ exports.Mutation = {
     const newCategories = db.myCategories.filter(
       (category) => category.id !== id
     );
+    const newProducts = db.myProducts.map((product) => {
+      if (product.categoryId === id) {
+        return {
+          ...product,
+          categoryId: null,
+        };
+      } else return product;
+    });
     if (!newCategories) return false;
     db.myCategories = [...newCategories];
+    db.myProducts = [...newProducts];
     return true;
   },
   deleteAProduct: (parent, { id }, { db }) => {

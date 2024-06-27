@@ -19,7 +19,7 @@ exports.typeDefs = gql`
     price: Float!
     img: String!
     onSale: Boolean!
-    categoryId: String!
+    categoryId: String
     category: [Category!]!
   }
   type Mutation {

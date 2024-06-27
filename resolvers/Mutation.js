@@ -48,33 +48,24 @@ exports.Mutation = {
     db.myProducts = [...newProducts];
     return true;
   },
-  updateAProduct: (parent, { input }, { db: { myProducts } }) => {
-    const { id, name, description, quantity, price, img, onSale, categoryId } =
+  updateAProduct: (parent, { id, input }, { db: { myProducts } }) => {
+    const { name, description, quantity, price, img, onSale, categoryId } =
       input;
-    const updatedProducts = myProducts.filter((product) => {
-      if (product.id === id) {
-        product.name = name;
-        product.description = description;
-        product.quantity = quantity;
-        product.price = price;
-        product.img = img;
-        product.onSale = onSale;
-        product.categoryId = categoryId;
-      }
-      return product;
-    });
-    myProducts = [...updatedProducts];
-    return true;
+    const index = myProducts.findIndex((product) => product.id === id);
+    myProducts[index] = {
+      ...myProducts[index],
+      ...input,
+    };
+    return myProducts[index];
   },
-  updateACategory: (parent, { input }, { db: { myCategories } }) => {
-    const { id, name } = input;
-    const updatedCategory = myCategories.filter((category) => {
-      if (category.id === id) {
-        category.name = name;
-      }
-      return category;
-    });
-    myCategories = [...updatedCategory];
-    return true;
+  updateACategory: (parent, { id, input }, { db: { myCategories } }) => {
+    const index = myCategories.findIndex((category) => category.id === id);
+    console.log(input.name);
+    myCategories[index] = {
+      ...myCategories[index],
+      ...input,
+    };
+    console.log(myCategories[index]);
+    return myCategories[index];
   },
 };

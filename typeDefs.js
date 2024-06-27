@@ -27,22 +27,20 @@ exports.typeDefs = gql`
     addProduct(input: AddProductInput!): Product!
     deleteACategory(id: ID!): Boolean!
     deleteAProduct(id: ID!): Boolean!
-    updateAProduct(input: UpdateAProductType!): Boolean!
-    updateACategory(input: UpdateACategoryType!): Boolean!
+    updateAProduct(id: ID!, input: UpdateAProductType!): Product!
+    updateACategory(id: ID!, input: UpdateACategoryType!): Category!
   }
   input UpdateACategoryType {
-    id: ID!
     name: String!
   }
   input UpdateAProductType {
-    id: ID!
-    name: String!
-    description: String!
-    quantity: Int!
-    price: Float!
-    img: String!
-    onSale: Boolean!
-    categoryId: String!
+    name: String
+    description: String
+    quantity: Int
+    price: Float
+    img: String
+    onSale: Boolean
+    categoryId: String
   }
   input AddCategoryInput {
     name: String!

@@ -39,4 +39,33 @@ exports.Mutation = {
     db.myProducts = [...newProducts];
     return true;
   },
+  updateAProduct: (parent, { input }, { db: { myProducts } }) => {
+    const { id, name, description, quantity, price, img, onSale, categoryId } =
+      input;
+    const updatedProducts = myProducts.filter((product) => {
+      if (product.id === id) {
+        product.name = name;
+        product.description = description;
+        product.quantity = quantity;
+        product.price = price;
+        product.img = img;
+        product.onSale = onSale;
+        product.categoryId = categoryId;
+      }
+      return product;
+    });
+    myProducts = [...updatedProducts];
+    return true;
+  },
+  updateACategory: (parent, { input }, { db: { myCategories } }) => {
+    const { id, name } = input;
+    const updatedCategory = myCategories.filter((category) => {
+      if (category.id === id) {
+        category.name = name;
+      }
+      return category;
+    });
+    myCategories = [...updatedCategory];
+    return true;
+  },
 };

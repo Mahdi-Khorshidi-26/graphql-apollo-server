@@ -3,9 +3,7 @@ const {
   ApolloServerPluginLandingPageGraphQLPlayground,
   ApolloServerPluginLandingPageDisabled,
 } = require("apollo-server-core");
-const { v4: uuid } = require("uuid");
-const { myProducts } = require("./db");
-const { myCategories } = require("./db");
+const { db } = require("./db");
 const { typeDefs } = require("./typeDefs");
 const { Query } = require("./resolvers/Query");
 const { Product } = require("./resolvers/Product");
@@ -24,8 +22,7 @@ const server = new ApolloServer({
     ApolloServerPluginLandingPageDisabled(),
   ],
   context: {
-    myProducts,
-    myCategories,
+    db
   },
 });
 

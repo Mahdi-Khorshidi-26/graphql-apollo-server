@@ -45,7 +45,7 @@ const myCategories = [
   },
 ];
 
-module.exports = {
+exports.db = {
   myProducts,
   myCategories,
 };

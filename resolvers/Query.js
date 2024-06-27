@@ -1,17 +1,17 @@
 exports.Query = {
-  products: (parent, args, { myProducts }) => {
-    return myProducts;
+  products: (parent, args, { db }) => {
+    return db.myProducts;
   },
-  categories: (parent, args, { myCategories }) => {
-    return myCategories;
+  categories: (parent, args, { db }) => {
+    return db.myCategories;
   },
-  category: (parent, { id }, { myCategories }) => {
-    const category = myCategories.filter((category) => category.id == id);
+  category: (parent, { id }, { db }) => {
+    const category = db.myCategories.filter((category) => category.id == id);
     if (!category) return;
     return category;
   },
-  product: (parent, { id }, { myProducts }) => {
-    const product = myProducts.filter((product) => product.id === id);
+  product: (parent, { id }, { db }) => {
+    const product = db.myProducts.filter((product) => product.id === id);
     if (!product) return;
     return product;
   },

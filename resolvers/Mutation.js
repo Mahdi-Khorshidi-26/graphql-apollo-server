@@ -49,8 +49,6 @@ exports.Mutation = {
     return true;
   },
   updateAProduct: (parent, { id, input }, { db: { myProducts } }) => {
-    const { name, description, quantity, price, img, onSale, categoryId } =
-      input;
     const index = myProducts.findIndex((product) => product.id === id);
     myProducts[index] = {
       ...myProducts[index],
